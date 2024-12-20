@@ -27,52 +27,50 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@4002.v80ca_d0f47d7f">
     <script>pipeline {
     agent any
+
+    environment {
+        DOCKER_IMAGE = &apos;jenkins_avs-jenkins:latest&apos;
+        DOCKER_CONTAINER_NAME = &apos;jenkins&apos;
+        DOCKER_PORT = &apos;80:80&apos;
+    }
+
     stages {
         stage(&apos;Checkout&apos;) {
             steps {
-                git branch: &apos;main&apos;, url: &apos;https://github.com/grogu27/jenkins_avs.git&apos;
+                git branch: &apos;main&apos;, url: &apos;https://github.com/grogu27/jenkins_avs&apos;
             }
         }
+
         stage(&apos;Build Docker Image&apos;) {
             steps {
                 script {
-                    // Удаление старого образа my-image
-                    sh &apos;docker rmi -f my-image:latest || true&apos;
-
-                    // Сборка Docker образа
-                    echo &apos;Building Docker image...&apos;
-                    sh &apos;docker build -t my-image:latest .&apos;  // Сборка образа с тегом &apos;my-image&apos;
+                    // Сборка Docker-образа
+                    sh &apos;docker build -t ${DOCKER_IMAGE} .&apos;
                 }
             }
         }
-        stage(&apos;Build and Deploy with Docker Compose&apos;) {
+
+        stage(&apos;Deploy&apos;) {
             steps {
                 script {
-                    // Перейдем в каталог, где расположен docker-compose.yml
-                    dir(&apos;.&apos;) {
-                        // Удаление старого контейнера docker-dind
-                        sh &apos;docker rm -f docker-dind || true&apos;
-
-                        // Остановка и удаление всех контейнеров, связанных с текущим проектом
-                        sh &apos;docker compose -f docker-compose.yml down --remove-orphans || true&apos;
-
-                        // Запуск сборки и деплоя с помощью docker-compose
-                        sh &quot;docker compose -f docker-compose.yml up -d --build --remove-orphans&quot;
-                    }
-                }
-            }
-        }
-        stage(&apos;Cleanup&apos;) {
-            steps {
-                script {
-                    // Удаление неиспользуемых образов
-                    sh &apos;docker image prune -f&apos;
+                    // Остановка и удаление старого контейнера, если он существует
+                    sh &apos;&apos;&apos;
+                        if docker ps -a --filter &quot;name=${DOCKER_CONTAINER_NAME}&quot; -q; then
+                            echo &quot;Stopping and removing existing container...&quot;
+                            docker stop ${DOCKER_CONTAINER_NAME}
+                            docker rm ${DOCKER_CONTAINER_NAME}
+                        else
+                            echo &quot;No existing container found, skipping stop and remove.&quot;
+                        fi
+                    &apos;&apos;&apos;
+                    // Запуск нового контейнера
+                    sh &quot;docker run -d --name ${DOCKER_CONTAINER_NAME} -p ${DOCKER_PORT} ${DOCKER_IMAGE}&quot;
                 }
             }
         }
     }
     triggers {
-        pollSCM(&apos;*/10 * * * *&apos;)  // Проверка изменений каждые 10 минут
+        pollSCM(&apos;H/5  * * * *&apos;)  // Проверка изменений каждые 10 минут
     }
     post {
         always {
