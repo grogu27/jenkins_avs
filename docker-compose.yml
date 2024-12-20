@@ -40,6 +40,15 @@ services:
       - "2376:2376"
     command: --storage-driver overlay2
 
+  app:
+    image: py-app:latest 
+    container_name: py-container
+    restart: always
+    depends_on:
+      - docker
+    networks:
+      - jenkins 
+
 networks:
   jenkins:
     driver: bridge
