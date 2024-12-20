@@ -43,7 +43,7 @@
                     &apos;&apos;&apos;
 
                     // Запуск контейнеров через docker-compose
-                    sh &apos;docker compose -f docker-compose.yml up -d docker-dind&apos;
+                    sh &apos;docker compose -f docker-compose.yml up -d docker&apos;
 
                     // Проверка состояния контейнеров
                     sh &apos;docker ps -a&apos;
