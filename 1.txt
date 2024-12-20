@@ -1,0 +1,14 @@
+docker exec -it jenkins bash
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+http://localhost:8080
+https://localhost:8443
+
+docker volume ls
+docker volume inspect jenkins_home
+docker compose down
+docker compose up -d
+docker volume rm jenkins_avs_jenkins_home
+
+grogu
+Andrey
+borov2754

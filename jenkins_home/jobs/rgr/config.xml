@@ -1,0 +1,50 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1472.ve4d5eca_143c4">
+  <description>В jenkins создан пайплайн/задача/таск, работающий с репозиторием gitlab/github&#xd;
+При изменении в репозитории автоматически запускается задача обновления docker-контейнера с содержимым репозитория (Либо сборка образа с новым приложением и обновление контейнера)</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@4002.v80ca_d0f47d7f">
+    <script>pipeline {
+    agent any
+    environment {
+        DOCKER_COMPOSE_FILE = &apos;docker-compose.yml&apos; // Путь к вашему файлу docker-compose.yml
+    }
+    stages {
+        stage(&apos;Checkout&apos;) {
+            steps {
+                git branch: &apos;main&apos;, url: &apos;https://github.com/grogu27/jenkins_avs.git&apos;
+            }
+        }
+        stage(&apos;Build and Deploy with Docker Compose&apos;) {
+            steps {
+                script {
+                    // Перейдем в каталог, где расположен docker-compose.yml
+                    dir(&apos;.&apos;) {
+                        // Запуск сборки и деплоя с помощью docker-compose
+                        sh &apos;docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --build&apos;
+                    }
+                }
+            }
+        }
+    }
+    triggers {
+        pollSCM(&apos;*/10 * * * * *&apos;)
+    }
+    post{
+        always{
+            echo &apos;pipeline finished&apos;
+        }
+        success{
+            echo &apos;:)&apos;
+        }
+        failure{
+            echo &apos;:(&apos;
+        }
+    }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
