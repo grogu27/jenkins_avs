@@ -45,7 +45,7 @@ services:
       context: ../jenkins_avs_2 
       dockerfile: Dockerfile
     container_name: py-container
-    restart: always
+    restart: on-failure
     depends_on:
       - docker
     networks:
