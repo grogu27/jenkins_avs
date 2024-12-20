@@ -15,6 +15,7 @@ docker-compose build
 docker rm -f docker-dind
 docker volume ls
 docker-compose logs
+docker log docker-din
 
 docker volume inspect jenkins_home
 docker compose down
