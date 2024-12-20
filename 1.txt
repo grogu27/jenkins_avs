@@ -24,4 +24,5 @@ grogu
 Andrey
 borov2754
 
- docker build -t py-app .
+docker build -t py-app .
+docker logs py-container
