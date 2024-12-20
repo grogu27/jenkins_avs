@@ -50,7 +50,7 @@ services:
       - docker
     networks:
       - jenkins
-    command: python main.py
+    command: python3 main.py
 
 networks:
   jenkins:
