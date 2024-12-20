@@ -13,9 +13,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get install -y docker-ce-cli \
     && rm -rf /var/lib/apt/lists/*
 
-# Переходим к пользователю Jenkins
-USER jenkins
+# Добавляем пользователя Jenkins в группу с ID 999
+RUN groupadd -g 999 docker && usermod -aG docker jenkins
 
 # Устанавливаем необходимые плагины Jenkins для работы с Docker
 RUN jenkins-plugin-cli --plugins "docker-workflow"
 
+# Переходим к пользователю Jenkins
+USER jenkins

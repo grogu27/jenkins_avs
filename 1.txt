@@ -1,4 +1,7 @@
 docker exec -it jenkins bash
+docker network create jenkins
+docker build -t jenkins_avs-jenkins .
+
 
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 http://localhost:8080

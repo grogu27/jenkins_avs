@@ -27,29 +27,18 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@4002.v80ca_d0f47d7f">
     <script>pipeline {
     agent any
-    environment {
-        DOCKER_COMPOSE_VERSION = &apos;1.29.2&apos;
-        DOCKER_COMPOSE_BIN = &quot;${env.HOME}/docker-compose&quot; // Путь для установки docker-compose
-    }
     stages {
         stage(&apos;Checkout&apos;) {
             steps {
                 git branch: &apos;main&apos;, url: &apos;https://github.com/grogu27/jenkins_avs.git&apos;
             }
         }
-        stage(&apos;Install Docker Compose&apos;) {
+        stage(&apos;Build Docker Image&apos;) {
             steps {
                 script {
-                    // Проверка, установлен ли docker-compose
-                    if (!fileExists(&quot;${DOCKER_COMPOSE_BIN}&quot;)) {
-                        echo &apos;docker-compose не найден, установка...&apos;
-                        sh &quot;&quot;&quot;
-                            curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64 -o ${DOCKER_COMPOSE_BIN}
-                            chmod +x ${DOCKER_COMPOSE_BIN}
-                        &quot;&quot;&quot;
-                    } else {
-                        echo &apos;docker-compose уже установлен.&apos;
-                    }
+                    // Сборка Docker образа
+                    echo &apos;Building Docker image...&apos;
+                    sh &apos;docker build -t my-image:latest .&apos;  // Сборка образа с тегом &apos;my-image&apos;
                 }
             }
         }
@@ -59,7 +48,7 @@
                     // Перейдем в каталог, где расположен docker-compose.yml
                     dir(&apos;.&apos;) {
                         // Запуск сборки и деплоя с помощью docker-compose
-                        sh &quot;${DOCKER_COMPOSE_BIN} -f docker-compose.yml up -d --build&quot;
+                        sh &quot;docker-compose -f docker-compose.yml up -d --build&quot;
                     }
                 }
             }
