@@ -44,3 +44,7 @@ cat 1.txt
 exit
 docker ps
 exit
+docker --version
+docker-compose --version
+docker compose version
+exit

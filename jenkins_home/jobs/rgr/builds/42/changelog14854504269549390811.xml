@@ -1,0 +1,67 @@
+commit 2bab9b5d5fba5cd423b25f53e439a2a8a7d6cefe
+tree 20909b6bd5a1b6b62ac08709987c8dcfa306d84e
+parent cade9dcc17f27bb49c5c075584f19035d44df650
+author grogu27 <korvo79612286796.220@mail.ru> 2024-12-20 19:00:13 +0700
+committer grogu27 <korvo79612286796.220@mail.ru> 2024-12-20 19:00:13 +0700
+
+    222332
+
+
+:100644 100644 d769ca0f057c73320d41888e42166d0f0aa979a7 cd9d26a161d2d8bd587184a1f8d8c51c511aa1e4 M	change.txt
+:100644 100644 0a2880edce9e1df6b2eb88deca0196e4d2777112 9e0ed341b810bb1c5c97341237e0f8136f7cc73c M	jenkins_home/.docker/buildx/activity/default
+:000000 100644 0000000000000000000000000000000000000000 4492bafc1ab095cd770c05fba67d32e31ed0e3f2 A	jenkins_home/.docker/buildx/refs/default/default/o80aas7o1kmdf4p8hnaoh52eb
+:000000 100644 0000000000000000000000000000000000000000 a33f776c7403376eb0585a3de84f6809ed48f4bf A	jenkins_home/.java/fonts/17.0.13/fcinfo-1-23065c380165-Debian GNU/Linux-12-en-.properties
+:100644 100644 25aa70f7e8b3f0c13f6eaef22f83c014e12babf1 d8b754cca17985d3ad717205eeb420b236f483df M	jenkins_home/copy_reference_file.log
+:100644 000000 6580ce46182ebe0306961c19dd2f6998bbb17dc0 0000000000000000000000000000000000000000 D	jenkins_home/failed-boot-attempts.txt
+:100644 100644 21be34f5e0535d75d81fdb3f2afdc9db375439b2 1cd50cce05a9ec2e0ac6f1dc719ed27054833354 M	jenkins_home/jobs/rgr/builds/40/build.xml
+:100644 100644 cbbeb53eed8677200c9fc843329fad37cb73232a 5140201f0212eb86667ea924fd7e39aee89d6ad0 M	jenkins_home/jobs/rgr/builds/40/log
+:100644 100644 25530f31dd5b9371ca12897ee988ca8e31f838d4 a7efcb7683ceb014400772b1d32c32904ff414ad M	jenkins_home/jobs/rgr/builds/40/log-index
+:100644 000000 aa7496587253b64914447e12896f588d7bb7a800 0000000000000000000000000000000000000000 D	jenkins_home/jobs/rgr/builds/40/program.dat
+:000000 100644 0000000000000000000000000000000000000000 d84d93d0140d4bd42fc7aae871dfc430f4de4531 A	jenkins_home/jobs/rgr/builds/40/workflow-completed/flowNodeStore.xml
+:000000 100644 0000000000000000000000000000000000000000 167d44cdd84e94bec5875f6be1905f06e9c99f30 A	jenkins_home/jobs/rgr/builds/41/build.xml
+:000000 100644 0000000000000000000000000000000000000000 d0385c2a1dc1cbbbcffd1e143d85150dec459fe0 A	jenkins_home/jobs/rgr/builds/41/changelog10913061546673453704.xml
+:000000 100644 0000000000000000000000000000000000000000 a97db04861356491cb69db982dc30b970763130b A	jenkins_home/jobs/rgr/builds/41/log
+:000000 100644 0000000000000000000000000000000000000000 e77e9cb8c5e0eac2bc53edc34984308e0dd966c2 A	jenkins_home/jobs/rgr/builds/41/log-index
+:000000 100644 0000000000000000000000000000000000000000 6b5608bbcf3ff47fac06d5e0e29cb9a61314e087 A	jenkins_home/jobs/rgr/builds/41/program.dat
+:100644 100644 709d26945f798271a290e63cb010c2c0905eb8a8 4b5ddfc5fd346bb7621ba93f815ed1f7993a219a R090	jenkins_home/jobs/rgr/builds/40/workflow/10.xml	jenkins_home/jobs/rgr/builds/41/workflow/10.xml
+:100644 100644 0cc3694502b844a23446437363cff6e5e8c46782 60f35f682e057aaceb8d247303de06cb5598a5d2 R088	jenkins_home/jobs/rgr/builds/40/workflow/11.xml	jenkins_home/jobs/rgr/builds/41/workflow/11.xml
+:100644 100644 8e1507ded8c2d3386177d1a5aa9f095b075679a5 6ca0f3a5d52dfbf51f49e009af0863f189e0e4e7 R094	jenkins_home/jobs/rgr/builds/40/workflow/12.xml	jenkins_home/jobs/rgr/builds/41/workflow/12.xml
+:100644 100644 26d9f5751c100fe800305984555d30291cdc4783 3d83997e701d9fc48fdc3b7c1114979dbc103b80 R093	jenkins_home/jobs/rgr/builds/40/workflow/13.xml	jenkins_home/jobs/rgr/builds/41/workflow/13.xml
+:100644 100644 4b4d662cba7ccca4cd4f02fa0be4f4884b4baeea f880c38463c12ebb5fe672b8d3a7f4a8dd1bec62 R090	jenkins_home/jobs/rgr/builds/40/workflow/14.xml	jenkins_home/jobs/rgr/builds/41/workflow/14.xml
+:100644 100644 98425608a6d55d1129f466f8b0d56f68a7eb04f3 352433657f7a0fd8646c0864a6f84e4f14428d59 R091	jenkins_home/jobs/rgr/builds/40/workflow/15.xml	jenkins_home/jobs/rgr/builds/41/workflow/15.xml
+:100644 100644 f2933ba1ee57129a53c97f2b6c096f4bba215376 52700c42206a7bbcf91ae9431e44cb424146f789 R094	jenkins_home/jobs/rgr/builds/40/workflow/16.xml	jenkins_home/jobs/rgr/builds/41/workflow/16.xml
+:100644 100644 1e0ae1f5acb2c164b2f852786ea249923c3e0789 477fca52deadb6b8bb9bac24d00942024ccd4d3d R090	jenkins_home/jobs/rgr/builds/40/workflow/17.xml	jenkins_home/jobs/rgr/builds/41/workflow/17.xml
+:100644 100644 74ba42d1a42e4766c7714827d59162f22d865dca 9ec5652e458f2fe69aba9519b52477888643d46e R088	jenkins_home/jobs/rgr/builds/40/workflow/18.xml	jenkins_home/jobs/rgr/builds/41/workflow/18.xml
+:100644 100644 f940d0891e97c09c03f2138993f953ac8217c936 51c7f6da33b196798c6a81664c9b87871a6a2a2b R090	jenkins_home/jobs/rgr/builds/40/workflow/19.xml	jenkins_home/jobs/rgr/builds/41/workflow/19.xml
+:100644 100644 4138b513258f32253beb055f88532694b4301d9d 297be28e5f770d3ea436a749c653cac8c39d638f R087	jenkins_home/jobs/rgr/builds/40/workflow/2.xml	jenkins_home/jobs/rgr/builds/41/workflow/2.xml
+:100644 100644 33896954bf4642f6333c05074ae6b0ea671b26e1 8b1c46e7126c4dc9c016bd654fb37f9e442827af R088	jenkins_home/jobs/rgr/builds/40/workflow/20.xml	jenkins_home/jobs/rgr/builds/41/workflow/20.xml
+:100644 100644 df3cfcfa838f271e3480595887cffb2f9709e8c0 4bfc51c498b0f005160034cda4961c36b9728a3c R094	jenkins_home/jobs/rgr/builds/40/workflow/21.xml	jenkins_home/jobs/rgr/builds/41/workflow/21.xml
+:100644 100644 64a18a75ac6d974d9faf8bdc5cecf6c5356833d0 0b9f02cad59d9f1a6dd5d6957b051b11af5c00e1 R093	jenkins_home/jobs/rgr/builds/40/workflow/22.xml	jenkins_home/jobs/rgr/builds/41/workflow/22.xml
+:100644 100644 04087c609f79e36da3d942f48df2fb1475139bc4 c175b8d39d7e577d65410ce2ce9953607a706332 R090	jenkins_home/jobs/rgr/builds/40/workflow/23.xml	jenkins_home/jobs/rgr/builds/41/workflow/23.xml
+:100644 100644 5799f5b4b8c2e345ff51a600cdddba7b0f8cb7b2 91dd99bf96b04f01a5394c8375a8f4b47a5cabc0 R091	jenkins_home/jobs/rgr/builds/40/workflow/24.xml	jenkins_home/jobs/rgr/builds/41/workflow/24.xml
+:100644 100644 53d5ef60bf6b521ef3a2352c042c56dab10be41d ce6177ead134686460a30f254bf4afd6c8f6e2af R096	jenkins_home/jobs/rgr/builds/40/workflow/25.xml	jenkins_home/jobs/rgr/builds/41/workflow/25.xml
+:100644 100644 b3f9689a125c0b50aa8e6be7407fa5e89402c532 0ff59bbde7c367b20f2d0e87cf19641aacd42053 R093	jenkins_home/jobs/rgr/builds/40/workflow/3.xml	jenkins_home/jobs/rgr/builds/41/workflow/3.xml
+:100644 100644 9322ed4f8ebe064250386fb533caaeca7d946302 1835874b8788f6f2ed22dfabd9516611765e61a3 R091	jenkins_home/jobs/rgr/builds/40/workflow/4.xml	jenkins_home/jobs/rgr/builds/41/workflow/4.xml
+:100644 100644 9cc285933a424023da25a0f38d462ec3fd8c0ccb aef16c6de0e9e8fb1e378612480afa7b575826be R095	jenkins_home/jobs/rgr/builds/40/workflow/5.xml	jenkins_home/jobs/rgr/builds/41/workflow/5.xml
+:100644 100644 3ec50511ad5a86f8289260e98cb1ce4703f075a1 15977c19c9e4944df781859e3d7acd0c2321b853 R091	jenkins_home/jobs/rgr/builds/40/workflow/6.xml	jenkins_home/jobs/rgr/builds/41/workflow/6.xml
+:100644 100644 406e4935814d1a06fd679feac1a897c46eee4e0c 55482db35d251748044bfd512d1e71acc0ab953b R094	jenkins_home/jobs/rgr/builds/40/workflow/7.xml	jenkins_home/jobs/rgr/builds/41/workflow/7.xml
+:100644 100644 fe7416702ea09f251df8e6caff20dd13e6531143 1d6e4c6d9197b000a86c1da2961cbd8ace032b57 R093	jenkins_home/jobs/rgr/builds/40/workflow/8.xml	jenkins_home/jobs/rgr/builds/41/workflow/8.xml
+:100644 100644 7c31e2a54ded4664c92ca208473233d1b5345956 e8c2e735fa3ea6c1f0052db219c7ba2dbd078fd5 R094	jenkins_home/jobs/rgr/builds/40/workflow/9.xml	jenkins_home/jobs/rgr/builds/41/workflow/9.xml
+:100644 100644 de990ee743ea50f152274eefd9f4d95b4a2f2e96 e2aa3b1557d4ef1959d14f1e6c31e79d5c04b93b M	jenkins_home/jobs/rgr/builds/permalinks
+:100644 100644 87523dd7a0632907d61799465827c3f08825fa47 d81cc0710eb6cf9efd5b920a8453e1e07157b6cd M	jenkins_home/jobs/rgr/nextBuildNumber
+:100644 000000 b9e62387e14a85c74a7d7c5f51b82b4f1c4630fe 0000000000000000000000000000000000000000 D	jenkins_home/logs/sse-events/job/254ca433-faa0-4188-8d4f-1fdcd3ad13c2.json
+:100644 000000 199b45b98b0f94f066005e9b3a49bcb7debb2246 0000000000000000000000000000000000000000 D	jenkins_home/logs/sse-events/job/29290eff-77dc-4df6-abb6-0ec6561af555.json
+:100644 000000 5a25c0e1792cad2eed1a9f3ef4c41905c4db4507 0000000000000000000000000000000000000000 D	jenkins_home/logs/sse-events/job/493ef2b9-0074-4af7-8053-c0b98c62b7c2.json
+:100644 000000 f0889b2126ca18b258392765fc3326fd0cb153a6 0000000000000000000000000000000000000000 D	jenkins_home/logs/sse-events/job/87fa0986-32fd-467f-8849-669b80bda910.json
+:100644 000000 29a427d5b709e6a5176928a16197b2f1fb06e3c9 0000000000000000000000000000000000000000 D	jenkins_home/logs/sse-events/job/8d7353e7-bc07-4b6b-a2f2-4ff8c924205f.json
+:100644 000000 c1bf2eee9e04e1ee37ac96cfc90bf233997ac4df 0000000000000000000000000000000000000000 D	jenkins_home/logs/sse-events/job/e299b4e3-e87e-4084-90dd-59df9f587b6f.json
+:100644 000000 dbee032c9d2b634d85043797d4e601772cf6ed2f 0000000000000000000000000000000000000000 D	jenkins_home/logs/sse-events/job/eb8f20a1-c00b-40bd-a944-49a7e6598655.json
+:100644 100644 470235b576d1eaf65a40f0d3d9f7c446e48197dd ee5a592da8f9aa5e75f94981825a6d1b7a45a1d2 M	jenkins_home/org.jenkinsci.plugins.workflow.flow.FlowExecutionList.xml
+:100644 000000 294564844134c5a4260743bd9130ea44d9e49e78 0000000000000000000000000000000000000000 D	jenkins_home/queue.xml
+:100644 100644 5a4367c4bc5c46081f0c27266aa190322d6c9475 d523e08717cfc7c40f1941df9ea363de5bddcf8d M	jenkins_home/queue.xml.bak
+:000000 100644 0000000000000000000000000000000000000000 08c70013b0810ab55adc50952b1eab778ab1d543 A	jenkins_home/secrets/org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices.mac
+:160000 160000 241a48b36efb1495f79a90750f680a64acf3dac7 cade9dcc17f27bb49c5c075584f19035d44df650 M	jenkins_home/workspace/rgr
+:100644 000000 9fdf30a36ffbec1fc2c12d620bb0be598848d19e 0000000000000000000000000000000000000000 D	jenkins_home/workspace/rgr@tmp/durable-38d1a63e/jenkins-log.txt
+:000000 100644 0000000000000000000000000000000000000000 a8f2ce48f87d79c3200bb101895a1e7b35c41873 A	jenkins_home/workspace/rgr@tmp/durable-81dd583f/jenkins-log.txt
+:100644 100644 092c79c19114ad52ce351a5a61f38465578c5eae 092c79c19114ad52ce351a5a61f38465578c5eae R100	jenkins_home/workspace/rgr@tmp/durable-38d1a63e/script.sh	jenkins_home/workspace/rgr@tmp/durable-81dd583f/script.sh
+:100644 100644 092c79c19114ad52ce351a5a61f38465578c5eae 092c79c19114ad52ce351a5a61f38465578c5eae R100	jenkins_home/workspace/rgr@tmp/durable-38d1a63e/script.sh.copy	jenkins_home/workspace/rgr@tmp/durable-81dd583f/script.sh.copy

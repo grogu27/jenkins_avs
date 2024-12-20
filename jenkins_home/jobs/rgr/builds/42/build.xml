@@ -15,7 +15,7 @@
       <libraries/>
     </org.jenkinsci.plugins.workflow.libs.LibrariesAction>
     <org.jenkinsci.plugins.pipeline.modeldefinition.actions.ExecutionModelAction plugin="pipeline-model-definition@2.2218.v56d0cda_37c72">
-      <stagesUUID>953055ce-7f67-4aa8-8b66-2948023935c9</stagesUUID>
+      <stagesUUID>55c5b1c0-5920-4c69-b527-e32bba0952d4</stagesUUID>
       <pipelineDefs>
         <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTPipelineDef plugin="pipeline-model-api@2.2218.v56d0cda_37c72">
           <stages>
@@ -94,20 +94,12 @@
                               </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
                               <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
                                 <value class="string">sh &apos;&apos;&apos;
-                        docker ps -a
-
-                        if docker ps -a --filter &quot;name=${DOCKER_CONTAINER_NAME}&quot; -q; then
-                            echo &quot;Stopping and removing existing container...&quot;
-                            docker stop ${DOCKER_CONTAINER_NAME}
-                            docker rm ${DOCKER_CONTAINER_NAME}
-                        else
-                            echo &quot;No existing container found, skipping stop and remove.&quot;
-                        fi
+                        docker-compose -f docker-compose.yml down || true
                     &apos;&apos;&apos;
-                    sh &apos;docker ps -a&apos;
-
-                    sh &quot;docker run -d --name ${DOCKER_CONTAINER_NAME} -p ${DOCKER_PORT} ${DOCKER_IMAGE}&quot;
-                    sh &apos;docker ps -a&apos;</value>
+                   
+                    sh &apos;&apos;&apos;
+                        docker-compose -f docker-compose.yml up -d
+                    &apos;&apos;&apos;</value>
                               </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
                             </entry>
                           </arguments>
@@ -118,229 +110,7 @@
                 </branches>
               </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
             </stages>
-            <uuid>953055ce-7f67-4aa8-8b66-2948023935c9</uuid>
-          </stages>
-          <postBuild>
-            <conditions>
-              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBuildCondition>
-                <condition>always</condition>
-                <branch>
-                  <name>default</name>
-                  <steps>
-                    <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                      <name>echo</name>
-                      <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
-                        <arguments class="linked-hash-map">
-                          <entry>
-                            <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                              <key>message</key>
-                            </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                            <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                              <value class="string">Pipeline finished</value>
-                            </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                          </entry>
-                        </arguments>
-                      </args>
-                    </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                  </steps>
-                </branch>
-              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBuildCondition>
-              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBuildCondition>
-                <condition>success</condition>
-                <branch>
-                  <name>default</name>
-                  <steps>
-                    <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                      <name>echo</name>
-                      <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
-                        <arguments class="linked-hash-map">
-                          <entry>
-                            <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                              <key>message</key>
-                            </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                            <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                              <value class="string">:)</value>
-                            </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                          </entry>
-                        </arguments>
-                      </args>
-                    </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                  </steps>
-                </branch>
-              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBuildCondition>
-              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBuildCondition>
-                <condition>failure</condition>
-                <branch>
-                  <name>default</name>
-                  <steps>
-                    <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                      <name>echo</name>
-                      <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
-                        <arguments class="linked-hash-map">
-                          <entry>
-                            <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                              <key>message</key>
-                            </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                            <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                              <value class="string">:(</value>
-                            </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                          </entry>
-                        </arguments>
-                      </args>
-                    </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                  </steps>
-                </branch>
-              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBuildCondition>
-            </conditions>
-          </postBuild>
-          <environment>
-            <variables class="linked-hash-map">
-              <entry>
-                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                  <key>DOCKER_IMAGE</key>
-                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                  <value class="string">jenkins_avs-jenkins:latest</value>
-                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-              </entry>
-              <entry>
-                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                  <key>DOCKER_CONTAINER_NAME</key>
-                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                  <value class="string">jenkins</value>
-                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-              </entry>
-              <entry>
-                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                  <key>DOCKER_PORT</key>
-                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                  <value class="string">80:80</value>
-                </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-              </entry>
-            </variables>
-          </environment>
-          <agent>
-            <agentType>
-              <key>any</key>
-            </agentType>
-          </agent>
-          <triggers>
-            <triggers>
-              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTTrigger>
-                <name>pollSCM</name>
-                <args>
-                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                    <value class="string">H/5  * * * *</value>
-                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                </args>
-              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTTrigger>
-            </triggers>
-          </triggers>
-        </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTPipelineDef>
-        <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTPipelineDef plugin="pipeline-model-api@2.2218.v56d0cda_37c72">
-          <stages>
-            <stages>
-              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
-                <name>Checkout</name>
-                <branches>
-                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
-                    <name>default</name>
-                    <steps>
-                      <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                        <name>git</name>
-                        <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
-                          <arguments class="linked-hash-map">
-                            <entry>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                                <key>branch</key>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                                <value class="string">main</value>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                            </entry>
-                            <entry>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                                <key>url</key>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                                <value class="string">https://github.com/grogu27/jenkins_avs</value>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                            </entry>
-                          </arguments>
-                        </args>
-                      </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStep>
-                    </steps>
-                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
-                </branches>
-              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
-              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
-                <name>Build Docker Image</name>
-                <branches>
-                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
-                    <name>default</name>
-                    <steps>
-                      <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
-                        <name>script</name>
-                        <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
-                          <arguments class="linked-hash-map">
-                            <entry>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                                <key>scriptBlock</key>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                                <value class="string">sh &apos;docker build -t ${DOCKER_IMAGE} .&apos;</value>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                            </entry>
-                          </arguments>
-                        </args>
-                      </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
-                    </steps>
-                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
-                </branches>
-              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
-              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
-                <name>Deploy</name>
-                <branches>
-                  <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
-                    <name>default</name>
-                    <steps>
-                      <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
-                        <name>script</name>
-                        <args class="org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTNamedArgumentList">
-                          <arguments class="linked-hash-map">
-                            <entry>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                                <key>scriptBlock</key>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTKey>
-                              <org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                                <value class="string">sh &apos;&apos;&apos;
-                        docker ps -a
-
-                        if docker ps -a --filter &quot;name=${DOCKER_CONTAINER_NAME}&quot; -q; then
-                            echo &quot;Stopping and removing existing container...&quot;
-                            docker stop ${DOCKER_CONTAINER_NAME}
-                            docker rm ${DOCKER_CONTAINER_NAME}
-                        else
-                            echo &quot;No existing container found, skipping stop and remove.&quot;
-                        fi
-                    &apos;&apos;&apos;
-                    sh &apos;docker ps -a&apos;
-
-                    sh &quot;docker run -d --name ${DOCKER_CONTAINER_NAME} -p ${DOCKER_PORT} ${DOCKER_IMAGE}&quot;
-                    sh &apos;docker ps -a&apos;</value>
-                              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTValue_-ConstantValue>
-                            </entry>
-                          </arguments>
-                        </args>
-                      </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTScriptBlock>
-                    </steps>
-                  </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTBranch>
-                </branches>
-              </org.jenkinsci.plugins.pipeline.modeldefinition.ast.ModelASTStage>
-            </stages>
-            <uuid>183fa186-689c-4d64-bcc0-0c1d77e25136</uuid>
+            <uuid>55c5b1c0-5920-4c69-b527-e32bba0952d4</uuid>
           </stages>
           <postBuild>
             <conditions>
@@ -469,7 +239,7 @@
           <string>refs/remotes/origin/main</string>
           <hudson.plugins.git.util.Build>
             <marked plugin="git-client@6.1.0">
-              <sha1>cade9dcc17f27bb49c5c075584f19035d44df650</sha1>
+              <sha1>2bab9b5d5fba5cd423b25f53e439a2a8a7d6cefe</sha1>
               <branches class="list">
                 <hudson.plugins.git.Branch>
                   <sha1 reference="../../../sha1"/>
@@ -478,7 +248,7 @@
               </branches>
             </marked>
             <revision reference="../marked"/>
-            <hudsonBuildNumber>41</hudsonBuildNumber>
+            <hudsonBuildNumber>42</hudsonBuildNumber>
           </hudson.plugins.git.util.Build>
         </entry>
       </buildsByBranchName>
@@ -495,23 +265,16 @@
         </entry>
       </revisionStates>
     </org.jenkinsci.plugins.workflow.steps.scm.MultiSCMRevisionState>
-    <jenkins.model.InterruptedBuildAction>
-      <causes>
-        <jenkins.model.CauseOfInterruption_-UserInterruption>
-          <user>grogu</user>
-        </jenkins.model.CauseOfInterruption_-UserInterruption>
-      </causes>
-    </jenkins.model.InterruptedBuildAction>
   </actions>
-  <queueId>85</queueId>
-  <timestamp>1734695806929</timestamp>
-  <startTime>1734695806945</startTime>
-  <result>ABORTED</result>
-  <duration>244892</duration>
+  <queueId>87</queueId>
+  <timestamp>1734696068603</timestamp>
+  <startTime>1734696068617</startTime>
+  <result>FAILURE</result>
+  <duration>9747</duration>
   <charset>UTF-8</charset>
   <keepLog>false</keepLog>
   <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
-    <result>ABORTED</result>
+    <result>FAILURE</result>
     <script>pipeline {
     agent any
 
@@ -542,21 +305,14 @@
             steps {
                 script {
                 
+                    
                     sh &apos;&apos;&apos;
-                        docker ps -a
-
-                        if docker ps -a --filter &quot;name=${DOCKER_CONTAINER_NAME}&quot; -q; then
-                            echo &quot;Stopping and removing existing container...&quot;
-                            docker stop ${DOCKER_CONTAINER_NAME}
-                            docker rm ${DOCKER_CONTAINER_NAME}
-                        else
-                            echo &quot;No existing container found, skipping stop and remove.&quot;
-                        fi
+                        docker-compose -f docker-compose.yml down || true
                     &apos;&apos;&apos;
-                    sh &apos;docker ps -a&apos;
-
-                    sh &quot;docker run -d --name ${DOCKER_CONTAINER_NAME} -p ${DOCKER_PORT} ${DOCKER_IMAGE}&quot;
-                    sh &apos;docker ps -a&apos;
+                   
+                    sh &apos;&apos;&apos;
+                        docker-compose -f docker-compose.yml up -d
+                    &apos;&apos;&apos;
 
                 }
             }
@@ -583,27 +339,27 @@
     <timings class="map">
       <entry>
         <string>flowNode</string>
-        <long>1034739901</long>
+        <long>1088223285</long>
       </entry>
       <entry>
         <string>classLoad</string>
-        <long>3366242493</long>
+        <long>462083408</long>
       </entry>
       <entry>
         <string>runQueue</string>
-        <long>2742890045</long>
+        <long>2475392939</long>
       </entry>
       <entry>
         <string>run</string>
-        <long>2944515904</long>
+        <long>2656482207</long>
       </entry>
       <entry>
         <string>parse</string>
-        <long>1177466859</long>
+        <long>40009172</long>
       </entry>
       <entry>
         <string>saveProgram</string>
-        <long>559050539</long>
+        <long>496392303</long>
       </entry>
     </timings>
     <internalCalls class="sorted-set">
@@ -611,8 +367,8 @@
       <string>org.jenkinsci.plugins.workflow.job.WorkflowRun.result</string>
     </internalCalls>
     <sandbox>false</sandbox>
-    <iota>39</iota>
-    <head>1:39</head>
+    <iota>41</iota>
+    <head>1:41</head>
     <done>true</done>
     <resumeBlocked>false</resumeBlocked>
     <storageDir>workflow-completed</storageDir>
@@ -642,7 +398,7 @@
       </scm>
       <node></node>
       <workspace>/var/jenkins_home/workspace/rgr</workspace>
-      <changelogFile>/var/jenkins_home/jobs/rgr/builds/41/changelog10913061546673453704.xml</changelogFile>
+      <changelogFile>/var/jenkins_home/jobs/rgr/builds/42/changelog14854504269549390811.xml</changelogFile>
       <pollingBaseline class="hudson.scm.SCMRevisionState$None" reference="../../../actions/org.jenkinsci.plugins.workflow.steps.scm.MultiSCMRevisionState/revisionStates/entry/hudson.scm.SCMRevisionState_-None"/>
     </org.jenkinsci.plugins.workflow.job.WorkflowRun_-SCMCheckout>
   </checkouts>

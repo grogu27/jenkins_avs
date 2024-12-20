@@ -55,21 +55,14 @@
             steps {
                 script {
                 
+                    
                     sh &apos;&apos;&apos;
-                        docker ps -a
-
-                        if docker ps -a --filter &quot;name=${DOCKER_CONTAINER_NAME}&quot; -q; then
-                            echo &quot;Stopping and removing existing container...&quot;
-                            docker stop ${DOCKER_CONTAINER_NAME}
-                            docker rm ${DOCKER_CONTAINER_NAME}
-                        else
-                            echo &quot;No existing container found, skipping stop and remove.&quot;
-                        fi
+                        docker compose -f docker-compose.yml down || true
                     &apos;&apos;&apos;
-                    sh &apos;docker ps -a&apos;
-
-                    sh &quot;docker run -d --name ${DOCKER_CONTAINER_NAME} -p ${DOCKER_PORT} ${DOCKER_IMAGE}&quot;
-                    sh &apos;docker ps -a&apos;
+                   
+                    sh &apos;&apos;&apos;
+                        docker compose -f docker-compose.yml up -d
+                    &apos;&apos;&apos;
 
                 }
             }
