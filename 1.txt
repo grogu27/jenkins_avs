@@ -1,4 +1,5 @@
 docker exec -it jenkins bash
+docker exec -it docker-dind sh
 docker network create jenkins
 docker build -t jenkins_avs-jenkins .
 
