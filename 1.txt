@@ -24,4 +24,4 @@ grogu
 Andrey
 borov2754
 
-
+ docker build -t py-app .

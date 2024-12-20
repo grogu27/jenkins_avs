@@ -1,0 +1,54 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1472.ve4d5eca_143c4">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@4002.v80ca_d0f47d7f">
+    <script>pipeline {
+    agent any
+
+    environment {
+        REPO_URL = &apos;https://github.com/grogu27/jenkins_avs_2&apos; 
+        APP_IMAGE = &apos;py-app:latest&apos;
+        DOCKER_COMPOSE_FILE = &apos;./docker-compose.yml&apos;
+    }
+
+    stages {
+        stage(&apos;Checkout Second Repo&apos;) {
+            steps {
+                git branch: &apos;main&apos;, url: &quot;${REPO_URL}&quot;
+            }
+        }
+
+        stage(&apos;Build Docker Image&apos;) {
+            steps {
+                script {
+                    
+                    sh &quot;&quot;&quot;
+                        docker build -t ${APP_IMAGE} .
+                    &quot;&quot;&quot;
+                }
+            }
+        }
+
+        stage(&apos;Deploy Updated Container&apos;) {
+            steps {
+                script {
+                    
+                    sh &quot;&quot;&quot;
+                        docker rm -f py-container || true
+                        docker run -d --name py-container -p 8000:8000 ${APP_IMAGE}
+                    &quot;&quot;&quot;
+                }
+            }
+        }
+    }
+
+}
+</script>
+    <sandbox>false</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

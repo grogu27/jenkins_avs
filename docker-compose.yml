@@ -41,13 +41,16 @@ services:
     command: --storage-driver overlay2
 
   app:
-    image: py-app:latest 
+    build:
+      context: ../jenkins_avs_2 
+      dockerfile: Dockerfile
     container_name: py-container
     restart: always
     depends_on:
       - docker
     networks:
-      - jenkins 
+      - jenkins
+    command: python main.py
 
 networks:
   jenkins:
