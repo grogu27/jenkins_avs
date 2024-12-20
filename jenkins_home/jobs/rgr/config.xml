@@ -1,19 +1,56 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@1472.ve4d5eca_143c4">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@2.2218.v56d0cda_37c72"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@2.2218.v56d0cda_37c72">
+      <jobProperties/>
+      <triggers>
+        <string>hudson.triggers.SCMTrigger</string>
+      </triggers>
+      <parameters/>
+      <options/>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
   <description>В jenkins создан пайплайн/задача/таск, работающий с репозиторием gitlab/github&#xd;
 При изменении в репозитории автоматически запускается задача обновления docker-контейнера с содержимым репозитория (Либо сборка образа с новым приложением и обновление контейнера)</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers>
+        <hudson.triggers.SCMTrigger>
+          <spec>*/10 * * * *</spec>
+          <ignorePostCommitHooks>false</ignorePostCommitHooks>
+        </hudson.triggers.SCMTrigger>
+      </triggers>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@4002.v80ca_d0f47d7f">
     <script>pipeline {
     agent any
     environment {
-        DOCKER_COMPOSE_FILE = &apos;docker-compose.yml&apos; // Путь к вашему файлу docker-compose.yml
+        DOCKER_COMPOSE_VERSION = &apos;1.29.2&apos;
+        DOCKER_COMPOSE_BIN = &quot;${env.HOME}/docker-compose&quot; // Путь для установки docker-compose
     }
     stages {
         stage(&apos;Checkout&apos;) {
             steps {
                 git branch: &apos;main&apos;, url: &apos;https://github.com/grogu27/jenkins_avs.git&apos;
+            }
+        }
+        stage(&apos;Install Docker Compose&apos;) {
+            steps {
+                script {
+                    // Проверка, установлен ли docker-compose
+                    if (!fileExists(&quot;${DOCKER_COMPOSE_BIN}&quot;)) {
+                        echo &apos;docker-compose не найден, установка...&apos;
+                        sh &quot;&quot;&quot;
+                            curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64 -o ${DOCKER_COMPOSE_BIN}
+                            chmod +x ${DOCKER_COMPOSE_BIN}
+                        &quot;&quot;&quot;
+                    } else {
+                        echo &apos;docker-compose уже установлен.&apos;
+                    }
+                }
             }
         }
         stage(&apos;Build and Deploy with Docker Compose&apos;) {
@@ -22,27 +59,28 @@
                     // Перейдем в каталог, где расположен docker-compose.yml
                     dir(&apos;.&apos;) {
                         // Запуск сборки и деплоя с помощью docker-compose
-                        sh &apos;docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --build&apos;
+                        sh &quot;${DOCKER_COMPOSE_BIN} -f docker-compose.yml up -d --build&quot;
                     }
                 }
             }
         }
     }
     triggers {
-        pollSCM(&apos;*/10 * * * * *&apos;)
+        pollSCM(&apos;*/10 * * * *&apos;)  // Проверка изменений каждые 10 минут
     }
-    post{
-        always{
-            echo &apos;pipeline finished&apos;
+    post {
+        always {
+            echo &apos;Pipeline finished&apos;
         }
-        success{
+        success {
             echo &apos;:)&apos;
         }
-        failure{
+        failure {
             echo &apos;:(&apos;
         }
     }
-}</script>
+}
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
