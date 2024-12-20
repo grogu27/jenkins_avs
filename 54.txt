@@ -57,3 +57,81 @@ pipeline {
         }
     }
 }
+
+
+
+
+
+
+
+
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = 'jenkins_avs-jenkins:latest'
+        DOCKER_CONTAINER_NAME = 'jenkins'
+        DOCKER_PORT = '80:80'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/grogu27/jenkins_avs'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Сборка Docker-образа
+                    sh 'docker build -t ${DOCKER_IMAGE} .'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Остановка и удаление контейнеров, если они существуют
+                    sh '''
+                        docker ps -a
+
+                        # Проверка, если контейнер с именем docker-dind существует
+                        if docker ps -a --filter "name=docker-dind" -q; then
+                            echo "Removing existing docker-dind container..."
+                            docker rm -f docker-dind || true
+                        fi
+                        
+                        # Проверка, если контейнер с именем jenkins существует
+                        if docker ps -a --filter "name=jenkins" -q; then
+                            echo "Removing existing jenkins container..."
+                            docker rm -f jenkins || true
+                        fi
+                    '''
+
+                    // Удаление контейнеров через docker-compose
+                    sh 'docker compose -f docker-compose.yml down'
+
+                    // Запуск контейнеров через docker-compose
+                    sh 'docker compose -f docker-compose.yml up -d'
+
+                    // Проверка состояния контейнеров
+                    sh 'docker ps -a'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished'
+        }
+        success {
+            echo ':)'
+        }
+        failure {
+            echo ':('
+        }
+    }
+}
