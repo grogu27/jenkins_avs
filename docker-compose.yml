@@ -1,41 +1,47 @@
-version: "3.8"
+version: '3.8'
 
 services:
   jenkins:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: jenkins
-    ports:
-      - "8080:8080" 
-      - "50000:50000"  # Для взаимодействия с агентами Jenkins
-      - "8443:8443"  
-    volumes:
-      - ./jenkins_home:/var/jenkins_home  
-      - ./jenkins_ssl:/var/jenkins_ssl  
-      - /var/run/docker.sock:/var/run/docker.sock  
+    restart: on-failure
+    networks:
+      - jenkins
     environment:
       - JENKINS_OPTS=--httpPort=8080 --httpsPort=8443 --httpsKeyStore=/var/jenkins_ssl/jenkins.p12 --httpsKeyStorePassword=borov2754
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
-    restart: unless-stopped
-
-  # докер в докере
-  docker:
-    image: docker:20.10.7-dind
-    container_name: docker-dind
-    privileged: true
-    environment:
-      - DOCKER_TLS_CERTDIR=/certs
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+      - "8443:8443"
     volumes:
-      - jenkins-docker-certs:/certs/client
+      - ./jenkins_home:/var/jenkins_home
+      - ./jenkins_ssl:/var/jenkins_ssl
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  docker:
+    image: docker:dind
+    container_name: docker-dind
+    restart: always
+    privileged: true
     networks:
       - jenkins
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client
     ports:
-      - "2376:2376"  # Порт для доступа к Docker
+      - "2376:2376"
+    command: --storage-driver overlay2
+
+networks:
+  jenkins:
+    driver: bridge
 
 volumes:
   jenkins_home:
   jenkins_ssl:
   jenkins-docker-certs:
-
-networks:
-  jenkins:
-    driver: bridge

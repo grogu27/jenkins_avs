@@ -158,3 +158,43 @@
 --- Copied files finished at Fri Dec 20 09:20:38 UTC 2024
 --- Copying files at Fri Dec 20 09:31:38 UTC 2024
 --- Copied files finished at Fri Dec 20 09:31:39 UTC 2024
+--- Copying files at Fri Dec 20 10:46:24 UTC 2024
+INSTALLED plugins/blueocean-git-pipeline.jpi : 1.27.16
+INSTALLED plugins/sse-gateway.jpi : 1.27
+INSTALLED plugins/jjwt-api.jpi : 0.11.5-112.ve82dfb_224b_a_d
+INSTALLED plugins/blueocean-rest-impl.jpi : 1.27.16
+INSTALLED plugins/bootstrap5-api.jpi : 5.3.3-1
+INSTALLED plugins/favorite.jpi : 2.221.v19ca_666b_62f5
+INSTALLED plugins/blueocean-events.jpi : 1.27.16
+INSTALLED plugins/jenkins-design-language.jpi : 1.27.16
+INSTALLED plugins/blueocean-github-pipeline.jpi : 1.27.16
+INSTALLED plugins/blueocean-commons.jpi : 1.27.16
+INSTALLED plugins/blueocean.jpi : 1.27.16
+INSTALLED plugins/blueocean-jwt.jpi : 1.27.16
+INSTALLED plugins/jquery3-api.jpi : 3.7.1-2
+INSTALLED plugins/pubsub-light.jpi : 1.18
+INSTALLED plugins/font-awesome-api.jpi : 6.6.0-2
+INSTALLED plugins/commons-text-api.jpi : 1.12.0-129.v99a_50df237f7
+INSTALLED plugins/blueocean-bitbucket-pipeline.jpi : 1.27.16
+INSTALLED plugins/blueocean-config.jpi : 1.27.16
+INSTALLED plugins/pipeline-graph-analysis.jpi : 216.vfd8b_ece330ca_
+INSTALLED plugins/blueocean-rest.jpi : 1.27.16
+INSTALLED plugins/cloudbees-bitbucket-branch-source.jpi : 933.0.2
+INSTALLED plugins/blueocean-web.jpi : 1.27.16
+INSTALLED plugins/blueocean-dashboard.jpi : 1.27.16
+INSTALLED plugins/blueocean-pipeline-api-impl.jpi : 1.27.16
+INSTALLED plugins/blueocean-personalization.jpi : 1.27.16
+INSTALLED plugins/blueocean-core-js.jpi : 1.27.16
+INSTALLED plugins/junit.jpi : 1312.v1a_235a_b_94a_31
+INSTALLED plugins/htmlpublisher.jpi : 1.37
+INSTALLED plugins/matrix-project.jpi : 840.v812f627cb_578
+INSTALLED plugins/blueocean-pipeline-editor.jpi : 1.27.16
+INSTALLED plugins/handy-uri-templates-2-api.jpi : 2.1.8-30.v7e777411b_148
+INSTALLED plugins/blueocean-pipeline-scm-api.jpi : 1.27.16
+INSTALLED plugins/plugin-util-api.jpi : 5.1.0
+INSTALLED plugins/blueocean-display-url.jpi : 2.4.3
+INSTALLED plugins/blueocean-i18n.jpi : 1.27.16
+INSTALLED plugins/checks-api.jpi : 2.2.1
+INSTALLED plugins/echarts-api.jpi : 5.5.1-4
+INSTALLED plugins/github-branch-source.jpi : 1807.v50351eb_7dd13
+--- Copied files finished at Fri Dec 20 10:46:25 UTC 2024

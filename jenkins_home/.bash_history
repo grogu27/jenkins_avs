@@ -38,3 +38,9 @@ exit
 ls -l /var/run/docker.sock
 groups jenkins
 exit
+cd /var/jenkins_home/workspace/rgr
+ls
+cat 1.txt 
+exit
+docker ps
+exit
