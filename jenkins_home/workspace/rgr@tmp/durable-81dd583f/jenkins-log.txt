@@ -1,0 +1,9 @@
++ docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                                                                      NAMES
+968bc51e388a   77d6ec35b9f0   "/usr/bin/tini -- /u…"   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, 0.0.0.0:8443->8443/tcp, 0.0.0.0:50000->50000/tcp   jenkins
+5b308f28d823   docker:dind    "dockerd-entrypoint.…"   33 minutes ago       Up 33 minutes       2375/tcp, 0.0.0.0:2376->2376/tcp                                           docker-dind
++ docker ps -a --filter name=jenkins -q
+968bc51e388a
++ echo Stopping and removing existing container...
+Stopping and removing existing container...
++ docker stop jenkins
