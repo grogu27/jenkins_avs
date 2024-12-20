@@ -46,7 +46,6 @@
                 script {
                     // Сборка Docker-образа
                     sh &apos;docker build -t ${DOCKER_IMAGE} .&apos;
-                    
                 }
             }
         }
@@ -54,23 +53,30 @@
         stage(&apos;Deploy&apos;) {
             steps {
                 script {
-                
-                    
+                    // Остановка и удаление контейнера, если он существует
                     sh &apos;&apos;&apos;
-                        docker compose -f docker-compose.yml down || true
-                    &apos;&apos;&apos;
-                   
-                    sh &apos;&apos;&apos;
-                        docker compose -f docker-compose.yml up -d
+                        docker ps -a
+                        
+                        # Проверка, если контейнер с именем docker-dind существует
+                        if docker ps -a --filter &quot;name=docker-dind&quot; -q; then
+                            echo &quot;Removing existing docker-dind container...&quot;
+                            docker rm -f docker-dind || true
+                        fi
                     &apos;&apos;&apos;
 
+                    // Удаление контейнеров через docker-compose
+                    sh &apos;docker compose -f docker-compose.yml down&apos;
+
+                    // Запуск контейнеров через docker-compose
+                    sh &apos;docker compose -f docker-compose.yml up -d&apos;
+
+                    // Проверка состояния контейнеров
+                    sh &apos;docker ps -a&apos;
                 }
             }
         }
     }
-    triggers {
-        pollSCM(&apos;H/5  * * * *&apos;)  
-    }
+
     post {
         always {
             echo &apos;Pipeline finished&apos;

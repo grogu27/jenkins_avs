@@ -1,12 +1,12 @@
-Started on Dec 20, 2024, 12:12:01 PM
+Started on Dec 20, 2024, 12:07:00 PM
 Using strategy: Default
-[poll] Last Built Revision: Revision b51731e4fc402910a85bca172bf492e13261e3e8 (refs/remotes/origin/main)
+[poll] Last Built Revision: Revision 2bab9b5d5fba5cd423b25f53e439a2a8a7d6cefe (refs/remotes/origin/main)
 The recommended git tool is: NONE
 No credentials specified
  > git --version # timeout=10
  > git --version # 'git version 2.39.5'
  > git ls-remote -h -- https://github.com/grogu27/jenkins_avs # timeout=10
 Found 1 remote heads on https://github.com/grogu27/jenkins_avs
-[poll] Latest remote head revision on refs/heads/main is: b51731e4fc402910a85bca172bf492e13261e3e8 - already built by 43
-Done. Took 3 sec
-No changes
+[poll] Latest remote head revision on refs/heads/main is: b51731e4fc402910a85bca172bf492e13261e3e8
+Done. Took 2.1 sec
+Changes found
