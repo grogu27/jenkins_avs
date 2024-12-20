@@ -1,0 +1,30 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<Tag plugin="workflow-support@936.v9fa_77211ca_e1">
+  <node class="cps.n.StepStartNode" plugin="workflow-cps@4002.v80ca_d0f47d7f">
+    <parentIds>
+      <string>4</string>
+    </parentIds>
+    <id>5</id>
+    <descriptorId>org.jenkinsci.plugins.workflow.steps.EnvStep</descriptorId>
+  </node>
+  <actions>
+    <s.a.LogStorageAction/>
+    <cps.a.ArgumentsActionImpl plugin="workflow-cps@4002.v80ca_d0f47d7f">
+      <arguments>
+        <entry>
+          <string>overrides</string>
+          <list>
+            <string>DOCKER_IMAGE=jenkins_avs-jenkins:latest</string>
+            <string>DOCKER_CONTAINER_NAME=jenkins</string>
+            <string>DOCKER_PORT=80:80</string>
+          </list>
+        </entry>
+      </arguments>
+      <sensitiveVariables/>
+      <isUnmodifiedBySanitization>true</isUnmodifiedBySanitization>
+    </cps.a.ArgumentsActionImpl>
+    <wf.a.TimingAction plugin="workflow-api@1336.vee415d95c521">
+      <startTime>1734695652859</startTime>
+    </wf.a.TimingAction>
+  </actions>
+</Tag>
