@@ -53,7 +53,7 @@
         stage(&apos;Deploy&apos;) {
             steps {
                 script {
-                    // Остановка и удаление старого контейнера, если он существует
+                
                     sh &apos;&apos;&apos;
                         if docker ps -a --filter &quot;name=${DOCKER_CONTAINER_NAME}&quot; -q; then
                             echo &quot;Stopping and removing existing container...&quot;
@@ -63,14 +63,14 @@
                             echo &quot;No existing container found, skipping stop and remove.&quot;
                         fi
                     &apos;&apos;&apos;
-                    // Запуск нового контейнера
+            
                     sh &quot;docker run -d --name ${DOCKER_CONTAINER_NAME} -p ${DOCKER_PORT} ${DOCKER_IMAGE}&quot;
                 }
             }
         }
     }
     triggers {
-        pollSCM(&apos;H/5  * * * *&apos;)  // Проверка изменений каждые 10 минут
+        pollSCM(&apos;H/5  * * * *&apos;)  
     }
     post {
         always {
