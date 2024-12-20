@@ -9,6 +9,7 @@ https://localhost:8443
 
 docker-compose build
 
+docker rm -f docker-dind
 docker volume ls
 docker-compose logs
 

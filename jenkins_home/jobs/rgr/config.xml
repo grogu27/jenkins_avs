@@ -36,6 +36,9 @@
         stage(&apos;Build Docker Image&apos;) {
             steps {
                 script {
+                    // Удаление старого образа my-image
+                    sh &apos;docker rmi -f my-image:latest || true&apos;
+
                     // Сборка Docker образа
                     echo &apos;Building Docker image...&apos;
                     sh &apos;docker build -t my-image:latest .&apos;  // Сборка образа с тегом &apos;my-image&apos;
@@ -47,9 +50,23 @@
                 script {
                     // Перейдем в каталог, где расположен docker-compose.yml
                     dir(&apos;.&apos;) {
+                        // Удаление старого контейнера docker-dind
+                        sh &apos;docker rm -f docker-dind || true&apos;
+
+                        // Остановка и удаление всех контейнеров, связанных с текущим проектом
+                        sh &apos;docker compose -f docker-compose.yml down --remove-orphans || true&apos;
+
                         // Запуск сборки и деплоя с помощью docker-compose
-                        sh &quot;docker-compose -f docker-compose.yml up -d --build&quot;
+                        sh &quot;docker compose -f docker-compose.yml up -d --build --remove-orphans&quot;
                     }
+                }
+            }
+        }
+        stage(&apos;Cleanup&apos;) {
+            steps {
+                script {
+                    // Удаление неиспользуемых образов
+                    sh &apos;docker image prune -f&apos;
                 }
             }
         }
@@ -70,7 +87,7 @@
     }
 }
 </script>
-    <sandbox>true</sandbox>
+    <sandbox>false</sandbox>
   </definition>
   <triggers/>
   <disabled>false</disabled>
